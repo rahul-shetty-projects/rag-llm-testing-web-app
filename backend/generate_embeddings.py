@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Initialize embeddings and vector store
-embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
 vector_store = Chroma(
     collection_name="example_collection",
     embedding_function=embeddings,

@@ -26,7 +26,7 @@ if missing_vars:
     raise EnvironmentError(f"Missing required environment variables: {', '.join(missing_vars)}")
 
 # Initialize the embedding model for vectorization of documents and queries
-embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
 
 # Initialize Chroma as the vector database for storing and retrieving embeddings
 vector_store = Chroma(
@@ -36,7 +36,7 @@ vector_store = Chroma(
 )
 
 # Initialize the language model (LLM) for generating responses
-llm = ChatGroq(model="gemma2-9b-it")
+llm = ChatGroq(model="openai/gpt-oss-20b")
 
 # Define a system prompt for retriever chain to rephrase questions based on chat history
 retriever_prompt = (
