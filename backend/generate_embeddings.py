@@ -1,4 +1,5 @@
 import os
+import shutil
 from docx import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
@@ -6,6 +7,12 @@ from langchain_chroma import Chroma
 from dotenv import load_dotenv
 
 load_dotenv()
+
+# Delete old Chroma database if it exists (since we're using a different embedding model)
+chroma_db_path = "./chroma_langchain_db"
+if os.path.exists(chroma_db_path):
+    print("Removing old Chroma database")
+    shutil.rmtree(chroma_db_path)
 
 # Initialize embeddings and vector store
 embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
